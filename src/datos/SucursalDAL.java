@@ -25,8 +25,7 @@ public class SucursalDAL {
         String mensaje = null;
         try {
             cn = Conexion.establishConnection();
-            String sql = "insert into sucursal(sucucodigo,sucunombre,"
-                    + "sucuciudad,sucudireccion,sucucontcuenta) values(?,?,?,?,?)";
+            String sql = "{call sp_insertarsucursal(?,?,?,?,?)}";
             ps = cn.prepareStatement(sql);
             ps.setString(1, sucursal.getCodigo());
             ps.setString(2, sucursal.getNombre());
