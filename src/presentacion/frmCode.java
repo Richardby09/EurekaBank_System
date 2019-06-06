@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JFrame;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import logica.SucursalBL;
 
 /**
@@ -17,6 +18,9 @@ import logica.SucursalBL;
  * @author R000R
  */
 public class frmCode extends javax.swing.JFrame {
+   
+
+      
    
     /**
      * Creates new form frmCode
@@ -70,6 +74,11 @@ public class frmCode extends javax.swing.JFrame {
         jRadioButton4.setText("Direccion");
         jRadioButton4.setActionCommand("rbdireccion");
         jRadioButton4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Ordenamiento");
 
@@ -94,7 +103,7 @@ public class frmCode extends javax.swing.JFrame {
             }
         ));
         jScrollPane2.setViewportView(jTable2);
-        jTable2.getAccessibleContext().setAccessibleName("table");
+        jTable2.getAccessibleContext().setAccessibleName("tabla");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -159,6 +168,10 @@ public class frmCode extends javax.swing.JFrame {
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
     
     /**
      * @param args the command line arguments
@@ -189,33 +202,53 @@ public class frmCode extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new frmCode().setVisible(true);
-                
-                 
+            
+             
+               new frmCode().setVisible(true);
+        
             }
         });
     }
-    private void listar(){
+   JFrame f;
+ 
+
+    
+    private  void listar(){
+//      jTable2=new JTable();
+//        DefaultTableModel modelo=new DefaultTableModel();
+      
          Sucursal sucu;
          ArrayList<Sucursal> sucursales = SucursalBL.listarSucursales();
         String data[][] = new String[sucursales.size()][4];
-        String column[] = {"Cogigo", "Nombre", "Ciudad", "Direccion"};       
+        String column[] = {"Cogigo", "Nombre", "Ciudad", "Direccion"};   
+       // modelo.addColumn(column);
         Iterator<Sucursal> iterador=sucursales.iterator();
         int i=0;
         while(iterador.hasNext()){
             sucu = iterador.next();            
             data[i][0]=sucu.getCodigo();
+          
             data[i][1]=sucu.getNombre();
+            
             data[i][2]=sucu.getCiudad();
-            data[i][3]=sucu.getDireccion();            
-            i++;            
-        }
-    
-        JTable jTable = new JTable(data,column);
-     
-     
-    }
+          
+            data[i][3]=sucu.getDireccion();       
+//            modelo.addRow(data);
+            i++;
+        
+        }    
+        
+//       jTable2.setModel(modelo);
+//       jTable2.getModel();
+          
+        //
+        
+        jTable2=new JTable(data,column);
+        f=new JFrame();
+        f.add(jTable2);
+     }
      
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
