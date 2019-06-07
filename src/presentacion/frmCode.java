@@ -17,17 +17,13 @@ import logica.SucursalBL;
  *
  * @author R000R
  */
-public class frmCode extends javax.swing.JFrame {
-   
-
-      
-   
-    /**
+public class frmCode extends javax.swing.JFrame {   
+      /**
      * Creates new form frmCode
      */
     public frmCode() {
         initComponents();
-        listar();
+        this.listar();
     }
 
     /**
@@ -48,7 +44,7 @@ public class frmCode extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabla1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +87,7 @@ public class frmCode extends javax.swing.JFrame {
         jButton3.setText("ACTUALZAR");
         jButton3.setActionCommand("btnactualizar");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -102,8 +98,8 @@ public class frmCode extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
-        jTable2.getAccessibleContext().setAccessibleName("tabla");
+        jScrollPane2.setViewportView(tabla1);
+        tabla1.getAccessibleContext().setAccessibleName("tabla");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -172,7 +168,29 @@ public class frmCode extends javax.swing.JFrame {
     private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton4ActionPerformed
-    
+    private  void listar(){
+   
+        modelo=new DefaultTableModel();   
+        ArrayList<Sucursal> sucursales = SucursalBL.listarSucursales();
+        Object  data[] = new Object[sucursales.size()];
+        String column[] = {"Cogigo", "Nombre", "Ciudad", "Direccion"};
+        modelo.setColumnIdentifiers(column);       
+       // modelo.addColumn(column);
+        Iterator<Sucursal> iterador=sucursales.iterator();
+        int i=0;
+        while(iterador.hasNext()){
+            sucu = iterador.next();            
+            data[1]=sucu.getCodigo();          
+            data[2]=sucu.getNombre();
+            data[3]=sucu.getCiudad();          
+            data[4]=sucu.getDireccion();    
+            data[5]=sucu.getContcuenta();
+            modelo.addRow(data);
+            i++;
+         }
+        tabla1.setModel(modelo);
+     }
+     
     /**
      * @param args the command line arguments
      */
@@ -203,53 +221,17 @@ public class frmCode extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
-            public void run() {
-            
-             
-               new frmCode().setVisible(true);
-        
+            public void run() {         
+             new frmCode().setVisible(true);
+               
             }
         });
     }
-   JFrame f;
+ 
  
 
     
-    private  void listar(){
-//      jTable2=new JTable();
-//        DefaultTableModel modelo=new DefaultTableModel();
-      
-         Sucursal sucu;
-         ArrayList<Sucursal> sucursales = SucursalBL.listarSucursales();
-        String data[][] = new String[sucursales.size()][4];
-        String column[] = {"Cogigo", "Nombre", "Ciudad", "Direccion"};   
-       // modelo.addColumn(column);
-        Iterator<Sucursal> iterador=sucursales.iterator();
-        int i=0;
-        while(iterador.hasNext()){
-            sucu = iterador.next();            
-            data[i][0]=sucu.getCodigo();
-          
-            data[i][1]=sucu.getNombre();
-            
-            data[i][2]=sucu.getCiudad();
-          
-            data[i][3]=sucu.getDireccion();       
-//            modelo.addRow(data);
-            i++;
-        
-        }    
-        
-//       jTable2.setModel(modelo);
-//       jTable2.getModel();
-          
-        //
-        
-        jTable2=new JTable(data,column);
-        f=new JFrame();
-        f.add(jTable2);
-     }
-     
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -261,12 +243,9 @@ public class frmCode extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JRadioButton jRadioButton4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables
+     DefaultTableModel modelo;
+        Sucursal sucu;
 
-    String codigo;
-    String nombre;
-    String direccion;
-    String ciudad;
-    String mensaje;
 }
