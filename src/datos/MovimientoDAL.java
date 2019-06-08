@@ -2,6 +2,7 @@
 package datos;
 
 import entidades.*;
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,7 @@ import static javax.swing.JOptionPane.showMessageDialog;
  */
 public class MovimientoDAL {
     
+      private static CallableStatement cs = null;
     private static Connection cn = null;
     private static PreparedStatement ps = null;
     private static Statement st = null;
@@ -32,7 +34,7 @@ public class MovimientoDAL {
             ps.setString(3, movimiento.getAccion());
             ps.setString(4,movimiento.getEstado() );                                  
             ps.executeUpdate();
-            mensaje="true";
+            mensaje="Registro insertado";
         } catch (ClassNotFoundException | SQLException ex) {
             mensaje = ex.getMessage();
         } finally {
@@ -99,4 +101,53 @@ public class MovimientoDAL {
         }
         return movimiento;
     }
+    
+    
+    public static String actualizarMovimiento(Movimiento movi) {
+        String sql, mensaje = null;
+        try {
+            cn = Conexion.establishConnection();
+            sql = "{call sp_modificarMovimiento(?,?,?,?)}";
+            cs = cn.prepareCall(sql);
+            cs.setString(1, movi.getCodigo());
+            cs.setString(2, movi.getDescripcion());
+            cs.setString(3, movi.getAccion());
+            cs.setString(4, movi.getEstado());
+            cs.executeUpdate();
+        } catch(ClassNotFoundException | SQLException ex) {
+            mensaje = ex.getMessage();
+        } finally {
+            try {
+                cs.close();
+                cn.close();
+            } catch(SQLException ex) {
+                mensaje = ex.getMessage();
+            }            
+        }
+        return mensaje;
+    }
+    
+    public static String eliminarMovimiento(String codigo) {
+        String sql, mensaje = null;
+        try {
+            cn = Conexion.establishConnection();
+            sql = "{call sp_eliminarMovimiento(?)}";
+            cs = cn.prepareCall(sql);
+            cs.setString(1, codigo);
+            cs.executeUpdate();
+        } catch(ClassNotFoundException | SQLException ex) {
+            mensaje = ex.getMessage();
+        } finally {
+            try {
+                cs.close();
+                cn.close();
+            } catch(SQLException ex) {
+                mensaje = ex.getMessage();
+            }            
+        }
+        return mensaje;
+    }
+    
+    
+    
 }

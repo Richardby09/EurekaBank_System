@@ -27,9 +27,9 @@
               <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnActualizar" min="-2" pref="114" max="-2" attributes="0"/>
+                      <Component id="btnActualizarM" min="-2" pref="114" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
-                      <Component id="btnSalir" min="-2" pref="98" max="-2" attributes="0"/>
+                      <Component id="btnSalirM" min="-2" pref="98" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -42,9 +42,9 @@
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtCodigoM" alignment="0" min="-2" pref="74" max="-2" attributes="0"/>
-                          <Component id="txtNombreM" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtCiudadM" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
-                          <Component id="txtDireccionM" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
+                          <Component id="txtDescripcionM" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtAccionM" alignment="0" min="-2" pref="178" max="-2" attributes="0"/>
+                          <Component id="txtEstadoM" alignment="0" min="-2" pref="211" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -63,22 +63,22 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lblNombreM" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtNombreM" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="txtDescripcionM" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lblCiudadM" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtCiudadM" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="txtAccionM" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="lblDireccionM" alignment="0" max="32767" attributes="0"/>
-                  <Component id="txtDireccionM" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="txtEstadoM" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="49" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnActualizar" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="btnSalir" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="btnActualizarM" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="btnSalirM" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
           </Group>
@@ -91,7 +91,7 @@
         <Property name="text" type="java.lang.String" value="Estado:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDireccionM">
+    <Component class="javax.swing.JTextField" name="txtEstadoM">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -111,7 +111,7 @@
         <Property name="text" type="java.lang.String" value="Descripcion:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNombreM">
+    <Component class="javax.swing.JTextField" name="txtDescripcionM">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
@@ -121,27 +121,27 @@
         <Property name="text" type="java.lang.String" value="Accion:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtCiudadM">
+    <Component class="javax.swing.JTextField" name="txtAccionM">
       <Properties>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnActualizar">
+    <Component class="javax.swing.JButton" name="btnActualizarM">
       <Properties>
         <Property name="mnemonic" type="int" value="65"/>
         <Property name="text" type="java.lang.String" value="Actualizar"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnActualizarMActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnSalir">
+    <Component class="javax.swing.JButton" name="btnSalirM">
       <Properties>
         <Property name="mnemonic" type="int" value="83"/>
         <Property name="text" type="java.lang.String" value="Salir"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirMActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

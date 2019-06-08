@@ -43,11 +43,11 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="32767" attributes="0"/>
               <Component id="btnNuevoM" min="-2" pref="102" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="btnRegistrarM" min="-2" pref="114" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Component id="btnSalirM" min="-2" pref="98" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -74,13 +74,13 @@
                   <Component id="lblDireccionM" alignment="0" max="32767" attributes="0"/>
                   <Component id="txtEstadoM" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btnNuevoM" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="btnRegistrarM" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
                   <Component id="btnSalirM" alignment="3" min="-2" pref="31" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="28" max="32767" attributes="0"/>
+              <EmptySpace pref="37" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>

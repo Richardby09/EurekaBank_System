@@ -66,7 +66,6 @@ public class FrmAddCliente extends javax.swing.JFrame {
 
         btnRegistrar.setMnemonic('R');
         btnRegistrar.setText("Registrar");
-        btnRegistrar.setEnabled(false);
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarActionPerformed(evt);

@@ -179,7 +179,6 @@
       <Properties>
         <Property name="mnemonic" type="int" value="82"/>
         <Property name="text" type="java.lang.String" value="Registrar"/>
-        <Property name="enabled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarActionPerformed"/>

@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package presentacion;
+import entidades.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import logica.MovimientoBL;
 
 /**
  *
@@ -17,6 +21,14 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
     public FrmModificarMovimiento() {
         initComponents();
     }
+    public FrmModificarMovimiento(JFrame parent, Movimiento movimiento) {
+        initComponents();
+        setLocationRelativeTo(parent);
+        txtCodigoM.setText(movimiento.getCodigo());
+        txtDescripcionM.setText(movimiento.getDescripcion());
+        txtAccionM.setText(movimiento.getAccion());
+        txtEstadoM.setText(movimiento.getEstado());
+    }            
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -28,21 +40,21 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
     private void initComponents() {
 
         lblDireccionM = new javax.swing.JLabel();
-        txtDireccionM = new javax.swing.JTextField();
+        txtEstadoM = new javax.swing.JTextField();
         lblCodigoM = new javax.swing.JLabel();
         txtCodigoM = new javax.swing.JTextField();
         lblNombreM = new javax.swing.JLabel();
-        txtNombreM = new javax.swing.JTextField();
+        txtDescripcionM = new javax.swing.JTextField();
         lblCiudadM = new javax.swing.JLabel();
-        txtCiudadM = new javax.swing.JTextField();
-        btnActualizar = new javax.swing.JButton();
-        btnSalir = new javax.swing.JButton();
+        txtAccionM = new javax.swing.JTextField();
+        btnActualizarM = new javax.swing.JButton();
+        btnSalirM = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblDireccionM.setText("Estado:");
 
-        txtDireccionM.setEnabled(false);
+        txtEstadoM.setEnabled(false);
 
         lblCodigoM.setText("Código:");
 
@@ -50,25 +62,25 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
 
         lblNombreM.setText("Descripcion:");
 
-        txtNombreM.setEnabled(false);
+        txtDescripcionM.setEnabled(false);
 
         lblCiudadM.setText("Accion:");
 
-        txtCiudadM.setEnabled(false);
+        txtAccionM.setEnabled(false);
 
-        btnActualizar.setMnemonic('A');
-        btnActualizar.setText("Actualizar");
-        btnActualizar.addActionListener(new java.awt.event.ActionListener() {
+        btnActualizarM.setMnemonic('A');
+        btnActualizarM.setText("Actualizar");
+        btnActualizarM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnActualizarActionPerformed(evt);
+                btnActualizarMActionPerformed(evt);
             }
         });
 
-        btnSalir.setMnemonic('S');
-        btnSalir.setText("Salir");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+        btnSalirM.setMnemonic('S');
+        btnSalirM.setText("Salir");
+        btnSalirM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
+                btnSalirMActionPerformed(evt);
             }
         });
 
@@ -80,9 +92,9 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnActualizarM, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(53, 53, 53)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnSalirM, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -93,9 +105,9 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtCodigoM, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNombreM)
-                            .addComponent(txtCiudadM, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDireccionM, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtDescripcionM)
+                            .addComponent(txtAccionM, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEstadoM, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(56, 56, 56))
         );
         layout.setVerticalGroup(
@@ -108,42 +120,61 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblNombreM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtNombreM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDescripcionM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblCiudadM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtCiudadM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtAccionM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblDireccionM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDireccionM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEstadoM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnActualizar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnActualizarM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalirM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(41, 41, 41))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
-        codigo = txtCodigo.getText();
-        nombre = txtNombre.getText();
-        ciudad = txtCiudad.getText();
-        direccion = txtDireccion.getText();
-        mensaje = SucursalBL.actualizarSucursal(codigo, nombre, ciudad, direccion);
+    private void btnActualizarMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarMActionPerformed
+        codigo = txtCodigoM.getText();
+        descripcion = txtDescripcionM.getText();
+        accion = txtAccionM.getText();
+        estado = txtEstadoM.getText();
+        mensaje = MovimientoBL.actualizarMovimiento(codigo, descripcion, accion, estado);
         if(mensaje.compareTo("Registro actualizado")==0)
         JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
         else
         JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
         limpiarTextos();
         activar(false);
-    }//GEN-LAST:event_btnActualizarActionPerformed
+    }//GEN-LAST:event_btnActualizarMActionPerformed
 
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+     private void activar(boolean estado) {
+        txtCodigoM.setEnabled(estado);
+        txtDescripcionM.setEnabled(estado);
+        txtAccionM.setEnabled(estado);
+        txtEstadoM.setEnabled(estado);    
+        btnActualizarM.setEnabled(estado);
+        btnSalirM.setEnabled(estado);
+    }
+    private void limpiarTextos(){
+        txtCodigoM.setText(null);
+        txtDescripcionM.setText(null);
+        txtAccionM.setText(null);
+        txtEstadoM.setText(null);
+      
+    }
+    
+    
+    
+    
+    private void btnSalirMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirMActionPerformed
         this.dispose();
-    }//GEN-LAST:event_btnSalirActionPerformed
+    }//GEN-LAST:event_btnSalirMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,15 +212,17 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnActualizar;
-    private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnActualizarM;
+    private javax.swing.JButton btnSalirM;
     private javax.swing.JLabel lblCiudadM;
     private javax.swing.JLabel lblCodigoM;
     private javax.swing.JLabel lblDireccionM;
     private javax.swing.JLabel lblNombreM;
-    private javax.swing.JTextField txtCiudadM;
+    private javax.swing.JTextField txtAccionM;
     private javax.swing.JTextField txtCodigoM;
-    private javax.swing.JTextField txtDireccionM;
-    private javax.swing.JTextField txtNombreM;
+    private javax.swing.JTextField txtDescripcionM;
+    private javax.swing.JTextField txtEstadoM;
     // End of variables declaration//GEN-END:variables
+
+    String codigo,descripcion,mensaje,accion,estado;
 }

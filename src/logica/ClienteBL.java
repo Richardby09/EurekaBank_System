@@ -67,7 +67,7 @@ public class ClienteBL {
     
     public static String eliminarCliente(String codigo) {
         String mensaje;
-        if(codigo.trim().length()==3) {
+        if(codigo.trim().length()==5) {
             mensaje = ClienteDAL.eliminarCliente(codigo);
             if(mensaje == null) {
                 mensaje = "Registro eliminado";

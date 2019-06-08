@@ -98,11 +98,11 @@ public class FrmAddMovimiento extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnNuevoM, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(20, 20, 20)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistrarM, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addComponent(btnSalirM, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43))
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -123,12 +123,12 @@ public class FrmAddMovimiento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblDireccionM, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtEstadoM, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(27, 27, 27)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNuevoM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrarM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalirM, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
@@ -147,6 +147,7 @@ public class FrmAddMovimiento extends javax.swing.JFrame {
         txtAccionM.setEnabled(estado);
         txtEstadoM.setEnabled(estado);    
         btnNuevoM.setEnabled(!estado);
+        btnRegistrarM.setEnabled(estado);
     }
     private void limpiarTextos(){
         txtCodigoM.setText(null);
@@ -167,8 +168,7 @@ public class FrmAddMovimiento extends javax.swing.JFrame {
         mensaje = MovimientoBL.insertarMovimiento(codigo, descripcion, accion, estado);
         if(mensaje.compareTo("Registro insertado")==0)
         JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
-        else
-        JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
+        else JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
         limpiarTextos();
         activar(false);
         btnNuevoM.requestFocus();

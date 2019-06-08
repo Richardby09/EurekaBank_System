@@ -156,7 +156,7 @@ public class Cliente implements Comparable<Cliente> {
 
     @Override
     public int compareTo(Cliente cliente) {
-        return this.getCodigo().compareTo(cliente.getCodigo());
+        return cliente.getCodigo().compareTo(this.getCodigo());
     }
 
     public String toString() {

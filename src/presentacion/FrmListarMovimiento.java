@@ -20,6 +20,7 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
      */
     public FrmListarMovimiento() {
         initComponents();
+        this.listar();
     }
 
     /**
@@ -35,18 +36,17 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        jTable2 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btmodificar = new javax.swing.JButton();
+        bteliminar = new javax.swing.JButton();
+        btsalir = new javax.swing.JButton();
+        rbtnCodigo = new javax.swing.JRadioButton();
+        rbtnAccion = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -57,21 +57,48 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jRadioButton1.setText("CODIGO");
-
-        jRadioButton2.setText("ACCION");
+        jScrollPane1.setViewportView(jTable2);
 
         jLabel1.setText("ORDENAMIENTO:");
 
-        jButton1.setText("Actualizar");
+        btmodificar.setText("MODIFICAR");
+        btmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btmodificarActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Guardar");
+        bteliminar.setText("ELIMINAR");
+        bteliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bteliminarActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Borrar");
+        btsalir.setText("SALIR");
+        btsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btsalirActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("salir");
+        buttonGroup1.add(rbtnCodigo);
+        rbtnCodigo.setMnemonic('C');
+        rbtnCodigo.setText("Código");
+        rbtnCodigo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnCodigoActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(rbtnAccion);
+        rbtnAccion.setMnemonic('N');
+        rbtnAccion.setText("Accion");
+        rbtnAccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbtnAccionActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -80,49 +107,115 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(60, 60, 60)
+                        .addGap(196, 196, 196)
+                        .addComponent(btmodificar)
+                        .addGap(35, 35, 35)
+                        .addComponent(bteliminar)
+                        .addGap(34, 34, 34)
+                        .addComponent(btsalir))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(rbtnCodigo)
+                        .addGap(30, 30, 30)
+                        .addComponent(rbtnAccion))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addGap(48, 48, 48)
-                                .addComponent(jRadioButton2))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton1)
-                        .addGap(50, 50, 50)
-                        .addComponent(jButton2)
-                        .addGap(48, 48, 48)
-                        .addComponent(jButton3)
-                        .addGap(46, 46, 46)
-                        .addComponent(jButton4)))
-                .addContainerGap(67, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 571, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
                 .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbtnCodigo)
+                    .addComponent(rbtnAccion))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(btmodificar)
+                    .addComponent(bteliminar)
+                    .addComponent(btsalir))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+      private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
+        movimiento = MovimientoBL.listarMovimiento();        
+    }   
+    
+    
+    private void rbtnCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnCodigoActionPerformed
+        
+         Collections.sort(movimiento);
+        this.listar();     
+    }//GEN-LAST:event_rbtnCodigoActionPerformed
+
+    private void rbtnAccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnAccionActionPerformed
+     
+        
+           Collections.sort(movimiento,new MovimientoAccion() );
+        this.listar();     
+        
+    }//GEN-LAST:event_rbtnAccionActionPerformed
+
+    private void btmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btmodificarActionPerformed
+         
+        int i = jTable2.getSelectedRow();
+        if (i!=-1) {
+            modelo=(DefaultTableModel)jTable2.getModel();
+            // Se extraen los datos del JTable y se envian 
+            // al formulario FrmModificarSucursal
+            codigo = (String)modelo.getValueAt(i,0);
+            descripcion = (String)modelo.getValueAt(i,1);
+            accion = (String)modelo.getValueAt(i,2);
+            estado = (String)modelo.getValueAt(i,3);           
+            movi = new Movimiento(codigo, descripcion, accion, estado);
+            FrmModificarMovimiento aplicacion = new FrmModificarMovimiento(this, movi);
+            aplicacion.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el registro a modificar", "Aviso", 2);             
+        }
+
+
+
+
+    }//GEN-LAST:event_btmodificarActionPerformed
+
+    private void bteliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bteliminarActionPerformed
+        int respuesta;
+        int i = jTable2.getSelectedRow();
+        if (i!=-1) {
+            respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el registro?", 
+                    "Aviso", JOptionPane.YES_NO_OPTION, 3);
+            if(respuesta == JOptionPane.OK_OPTION) {
+                modelo=(DefaultTableModel)jTable2.getModel();
+                codigo = (String)modelo.getValueAt(i,0);
+                mensaje = MovimientoBL.eliminarMovimiento(codigo);
+                if(mensaje.compareTo("Registro eliminado")==0) {
+                    JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
+                    rbtnCodigoActionPerformed(evt);
+                }
+                else
+                    JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar el registro a modificar", "Aviso", 2);             
+        }
+
+    }//GEN-LAST:event_bteliminarActionPerformed
+
+    private void btsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btsalirActionPerformed
+        this.dispose();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btsalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,19 +251,43 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
             }
         });
     }
+    
+    private void listar(){
+        modelo = new DefaultTableModel();
+        modelo.setColumnIdentifiers(columna);
+        iterador=movimiento.iterator();
+        if(iterador.hasNext()){
+            movi=iterador.next();
+            fila[0] = movi.getCodigo();
+            fila[1] = movi.getDescripcion();
+            fila[2] = movi.getAccion();
+            fila[3] = movi.getEstado();
+             modelo.addRow(fila);
+        }
+        jTable2.setModel(modelo);
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bteliminar;
+    private javax.swing.JButton btmodificar;
+    private javax.swing.JButton btsalir;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JRadioButton rbtnAccion;
+    private javax.swing.JRadioButton rbtnCodigo;
     // End of variables declaration//GEN-END:variables
+     private ArrayList<Movimiento> movimiento=MovimientoBL.listarMovimiento();
+      private Movimiento movi = null;
+    String columna[]={" Tipo Codigo","Tipo Descripcion","Tipo Accion","Tipo Estado"};
+    Object fila[]= new Object[movimiento.size()];
+    String codigo,descripcion,mensaje,accion,estado;
+    private Iterator<Movimiento> iterador;
+    DefaultTableModel modelo ;
+
+
 }

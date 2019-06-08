@@ -38,19 +38,21 @@ public class FrmListarCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         rbtNombre = new javax.swing.JRadioButton();
         rbtCiudad = new javax.swing.JRadioButton();
         rbtCodigo = new javax.swing.JRadioButton();
         rctPaterno = new javax.swing.JRadioButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        buttonGroup1.add(rbtNombre);
         rbtNombre.setText("Nombre");
         rbtNombre.setActionCommand("rbnombre");
         rbtNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +61,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rbtCiudad);
         rbtCiudad.setText("Ciudad");
         rbtCiudad.setActionCommand("rbciudad");
         rbtCiudad.addActionListener(new java.awt.event.ActionListener() {
@@ -67,6 +70,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rbtCodigo);
         rbtCodigo.setText("Codigo");
         rbtCodigo.setActionCommand("rbCodigo");
         rbtCodigo.addActionListener(new java.awt.event.ActionListener() {
@@ -75,6 +79,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(rctPaterno);
         rctPaterno.setText("A Paterno");
         rctPaterno.setActionCommand("rbdireccion");
         rctPaterno.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -86,19 +91,19 @@ public class FrmListarCliente extends javax.swing.JFrame {
 
         jLabel1.setText("Ordenamiento");
 
-        jButton1.setText("BORRAR");
-        jButton1.setActionCommand("btnborrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setText("BORRAR");
+        Eliminar.setActionCommand("btnborrar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
 
-        jButton2.setText("MODIFICAR");
-        jButton2.setActionCommand("btnguardar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        Modificar.setText("MODIFICAR");
+        Modificar.setActionCommand("btnguardar");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                ModificarActionPerformed(evt);
             }
         });
 
@@ -147,9 +152,9 @@ public class FrmListarCliente extends javax.swing.JFrame {
                                 .addComponent(rbtCiudad))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(228, 228, 228)
-                                .addComponent(jButton2)
+                                .addComponent(Modificar)
                                 .addGap(105, 105, 105)
-                                .addComponent(jButton1)
+                                .addComponent(Eliminar)
                                 .addGap(131, 131, 131)
                                 .addComponent(jButton4)))
                         .addGap(0, 202, Short.MAX_VALUE)))
@@ -173,11 +178,11 @@ public class FrmListarCliente extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jButton4)
-                            .addComponent(jButton1))
+                            .addComponent(Eliminar))
                         .addGap(61, 61, 61))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2)
+                        .addComponent(Modificar)
                         .addGap(60, 60, 60))))
         );
 
@@ -192,7 +197,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_rbtNombreActionPerformed
 
     private void rbtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCodigoActionPerformed
-       Collections.sort(cliente);
+        Collections.sort(cliente);
         this.listar();
     }//GEN-LAST:event_rbtCodigoActionPerformed
 
@@ -210,7 +215,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
        ii= tabla1.getSelectedRow();
        if(ii>-1){
            modelo=(DefaultTableModel)tabla1.getModel();
@@ -232,13 +237,13 @@ public class FrmListarCliente extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_ModificarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
         
         int respuesta;
         int i = tabla1.getSelectedRow();
-        if (i!=-1) {
+        if (i>-1) {
             respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el registro?", 
                     "Aviso", JOptionPane.YES_NO_OPTION, 3);
             if(respuesta == JOptionPane.OK_OPTION) {
@@ -247,7 +252,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
                 mensaje = ClienteBL.eliminarCliente(codigo);
                 if(mensaje.compareTo("Registro eliminado")==0) {
                     JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
-                    rbtCodigoActionPerformed(evt);
+     //               rbtCodigoActionPerformed(evt);
                 }
                 else
                     JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
@@ -257,7 +262,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
         }
         
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_EliminarActionPerformed
    
     private  void listar(){   
         modelo=new DefaultTableModel();   
@@ -324,8 +329,9 @@ public class FrmListarCliente extends javax.swing.JFrame {
     }   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Modificar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane2;

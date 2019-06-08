@@ -233,11 +233,11 @@ public class FrnModificarCliente extends javax.swing.JFrame {
         else
         JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
         limpiarTextos();
-        activar(false);
+        activar(true);
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void activar(boolean estado) {
-        txtCodigoC.setEnabled(estado);
+        txtCodigoC.setEnabled(!estado);
         txtNombreC.setEnabled(estado);
         txtCiudadC.setEnabled(estado);
         txtDireccionC.setEnabled(estado);
