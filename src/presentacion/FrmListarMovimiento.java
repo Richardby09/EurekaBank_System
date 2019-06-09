@@ -20,9 +20,9 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
      */
     public FrmListarMovimiento() {
         initComponents();
-        this.listar();
+        //this.listar();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -45,6 +45,11 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
         rbtnAccion = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -168,13 +173,12 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
         int i = jTable2.getSelectedRow();
         if (i!=-1) {
             modelo=(DefaultTableModel)jTable2.getModel();
-            // Se extraen los datos del JTable y se envian 
-            // al formulario FrmModificarSucursal
             codigo = (String)modelo.getValueAt(i,0);
-            descripcion = (String)modelo.getValueAt(i,1);
+       descripcion = (String)modelo.getValueAt(i,1);
             accion = (String)modelo.getValueAt(i,2);
             estado = (String)modelo.getValueAt(i,3);           
             movi = new Movimiento(codigo, descripcion, accion, estado);
+          //  this.listar();
             FrmModificarMovimiento aplicacion = new FrmModificarMovimiento(this, movi);
             aplicacion.setVisible(true);
             this.listar();
@@ -215,6 +219,10 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btsalirActionPerformed
 
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        movimiento= MovimientoBL.listarMovimiento();  
+    }//GEN-LAST:event_formWindowActivated
+
     /**
      * @param args the command line arguments
      */
@@ -249,12 +257,12 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
             }
         });
     }
-          
     
     private void listar(){
+        modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(columna);
-        iterador=movimiento.iterator();
-        if(iterador.hasNext()){
+        iterador=this.movimiento.iterator();
+        while(iterador.hasNext()){
             movi=iterador.next();
             fila[0] = movi.getCodigo();
             fila[1] = movi.getDescripcion();
@@ -279,13 +287,14 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnAccion;
     private javax.swing.JRadioButton rbtnCodigo;
     // End of variables declaration//GEN-END:variables
-     private ArrayList<Movimiento> movimiento=MovimientoBL.listarMovimiento(); 
-      private Movimiento movi = null;
+    private ArrayList<Movimiento> movimiento;
+    private Movimiento movi = null;
     String columna[]={" Tipo Codigo","Tipo Descripcion","Tipo Accion","Tipo Estado"};
     Object fila[]= new Object[columna.length];
     String codigo,descripcion,mensaje,accion,estado;
     private Iterator<Movimiento> iterador;
-    DefaultTableModel modelo = new DefaultTableModel();
+    DefaultTableModel modelo ;
+   int i=0;
 
 
 }

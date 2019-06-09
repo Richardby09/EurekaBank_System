@@ -139,13 +139,14 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
         codigo = txtCodigoM.getText();
         descripcion = txtDescripcionM.getText();
         accion = txtAccionM.getText();
-        estado = txtEstadoM.getText();
+        estado = txtEstadoM.getText();        
         mensaje = MovimientoBL.actualizarMovimiento(codigo, descripcion, accion, estado);
         if(mensaje.compareTo("Registro actualizado")==0)
         JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
         else
         JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
        // limpiarTextos();
+     
         activar(true);
     }//GEN-LAST:event_btnActualizarMActionPerformed
 

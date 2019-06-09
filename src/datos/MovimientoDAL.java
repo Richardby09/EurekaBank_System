@@ -84,7 +84,8 @@ public class MovimientoDAL {
             cs=cn.prepareCall(sql);
             rs = cs.executeQuery(sql);
             while (rs.next()) {
-                movimiento.add( new Movimiento( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4) ));
+                movimiento.add( new Movimiento( rs.getString(1), rs.getString(2), 
+                        rs.getString(3), rs.getString(4) ));
             }
         } catch (ClassNotFoundException | SQLException ex) {
             showMessageDialog(null, ex.getMessage(), "Error", 0);
