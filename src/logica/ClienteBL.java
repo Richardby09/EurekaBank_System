@@ -14,18 +14,26 @@ public class ClienteBL {
     public static String insertarCliente(String codigo, String Apaterno, String Amaterno, String nombre, String dni
             , String ciudad, String direccion, String telefono, String email) {
         String mensaje;
-        if (codigo.trim().length() == 5 && nombre.trim().length() > 1 && nombre.trim().length() <= 30
-                && ciudad.trim().length() > 1 && ciudad.trim().length() <= 30 && direccion.trim().length() > 1
-                && direccion.trim().length() <= 50 &&telefono.trim().length()>1 && telefono.trim().length()>20
-                && dni.trim().length()==8&&Apaterno.trim().length()>1 &&Apaterno.trim().length()<=25 &&
-                Amaterno.trim().length()>1 &&Amaterno.trim().length()<=25&& email.trim().length()>1 
-                &&email.trim().length()<=50 ){
+        //////////////////////////no pasa
+        if (codigo.trim().length() == 5  
+                &&Apaterno.trim().length()>1 &&Apaterno.trim().length()<=25 
+                && Amaterno.trim().length()>1 &&Amaterno.trim().length()<=25
+                && nombre.trim().length() > 1 && nombre.trim().length() <= 30
+                && dni.trim().length()==8
+                && ciudad.trim().length() > 1 && ciudad.trim().length() <= 30
+                && direccion.trim().length() > 1&& direccion.trim().length() <= 50
+                &&telefono.trim().length()>1 && telefono.trim().length()<=20
+                && email.trim().length()>1 &&email.trim().length()<=50 )
+        {
             
             if (buscarCliente(codigo) == null) {
                 Cliente cliente = new Cliente(codigo,Apaterno,Amaterno, nombre,dni, ciudad, direccion,telefono,email);
                 mensaje = ClienteDAL.insertarCliente(cliente);
+                    if(mensaje == null) {
+                    mensaje = "Registro insertado";
+                }
             } else {
-                mensaje = "Código de sucursal y existe";
+                mensaje = "Código de Cliente y existe";
             }
         } else {
             mensaje = "Datos no válidos";
@@ -34,7 +42,7 @@ public class ClienteBL {
     }
 
     public static String buscarCliente(String codigo) {
-        if (codigo.trim().length() == 3) {
+        if (codigo.trim().length() == 5) {
             return ClienteDAL.buscarCliente(codigo);
         } else {
             return "Dato no válido";
@@ -51,7 +59,7 @@ public class ClienteBL {
         if(codigo.trim().length() == 5 && nombre.trim().length() > 1 && nombre.trim().length() <= 30
                 && ciudad.trim().length() > 1 && ciudad.trim().length() <= 30 && direccion.trim().length() > 1
                 && direccion.trim().length() <= 50 &&telefono.trim().length()>1 && telefono.trim().length()>20
-                && dni.trim().length()==8&&Apaterno.trim().length()>1 &&Apaterno.trim().length()<=25 &&
+                && dni.trim().length()>1&& dni.trim().length()<=8&&Apaterno.trim().length()>1 &&Apaterno.trim().length()<=25 &&
                 Amaterno.trim().length()>1 &&Amaterno.trim().length()<=25&& email.trim().length()>1 
                 &&email.trim().length()<=50 ) {
             Cliente cliente = new Cliente(codigo,Apaterno,Amaterno, nombre,dni, ciudad, direccion,telefono,email);

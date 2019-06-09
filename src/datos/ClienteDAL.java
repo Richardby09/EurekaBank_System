@@ -19,23 +19,23 @@ public class ClienteDAL {
         try {
             cn = Conexion.establishConnection();
             String sql = "{call sp_insertarCliente(?,?,?,?,?,?,?,?,?)}";
-            ps = cn.prepareStatement(sql);
-            ps.setString(1, cliente.getCodigo());
-            ps.setString(4, cliente.getNombre());
-            ps.setString(6, cliente.getCiudad());
-            ps.setString(7, cliente.getDireccion());
-            ps.setString(8, cliente.getTelefono());
-            ps.setString(5, cliente.getDni());
-            ps.setString(2, cliente.getApaterno());
-            ps.setString(3, cliente.getAmaterno());
-            ps.setString(9, cliente.getEmail());                               
-            ps.executeUpdate();
-            mensaje="true";
+            cs = cn.prepareCall(sql);
+            cs.setString(1, cliente.getCodigo());
+            cs.setString(2, cliente.getApaterno());
+            cs.setString(3, cliente.getAmaterno());
+            cs.setString(4, cliente.getNombre());
+            cs.setString(5, cliente.getDni());
+            cs.setString(6, cliente.getCiudad());
+            cs.setString(7, cliente.getDireccion());
+            cs.setString(8, cliente.getTelefono());            
+            cs.setString(9, cliente.getEmail());                               
+            cs.executeUpdate();
+            
         } catch (ClassNotFoundException | SQLException ex) {
             mensaje = ex.getMessage();
         } finally {
             try {
-                ps.close();
+                cs.close();
                 cn.close();
             } catch (SQLException ex) {
                 mensaje = ex.getMessage();
@@ -48,10 +48,10 @@ public class ClienteDAL {
     public static String buscarCliente(String codigo) {
         try {
             cn = Conexion.establishConnection();
-            String sql = "select * from cliente where cliecodigo = ?";
-            ps = cn.prepareStatement(sql);
-            ps.setString(1,codigo);
-            rs = ps.executeQuery();
+            String sql = "{call sp_buscarCliente(?)}";
+           cs = cn.prepareCall(sql);
+            cs.setString(1, codigo);
+            rs = cs.executeQuery();
             while (rs.next()) {
                 return rs.getString(1);
             }                        
@@ -60,7 +60,7 @@ public class ClienteDAL {
             showMessageDialog(null, ex.getMessage(), "Error", 0);
         } finally {
             try {
-                ps.close();
+                cs.close();
                 cn.close();
                 rs.close();
 
@@ -73,13 +73,12 @@ public class ClienteDAL {
     }
 
     public static ArrayList<Cliente> listarCliente() {
-
         ArrayList<Cliente> cliente = new ArrayList<>();
         try {
             cn = Conexion.establishConnection();
-            st = cn.createStatement();
-            String sql = "select * from cliente";
-            rs = st.executeQuery(sql);
+            String sql = "{call sp_listarClientes()}";
+            cs = cn.prepareCall(sql);            
+            rs = cs.executeQuery(sql);
             while (rs.next()) {
                 cliente.add(
                         new Cliente(
@@ -110,15 +109,15 @@ public class ClienteDAL {
             cn = Conexion.establishConnection();
             sql = "{call sp_actualizarCliente(?,?,?,?,?,?,?,?,?)}";
             cs = cn.prepareCall(sql);
-            ps.setString(1, cliente.getCodigo());
-            ps.setString(2, cliente.getApaterno());
-            ps.setString(3, cliente.getAmaterno());
-            ps.setString(4, cliente.getNombre());
-            ps.setString(5, cliente.getDni());                    
-            ps.setString(6, cliente.getCiudad());
-            ps.setString(7, cliente.getDireccion());
-            ps.setString(8, cliente.getTelefono());
-            ps.setString(9, cliente.getEmail());     
+            cs.setString(1, cliente.getCodigo());
+            cs.setString(2, cliente.getApaterno());
+            cs.setString(3, cliente.getAmaterno());
+            cs.setString(4, cliente.getNombre());
+            cs.setString(5, cliente.getDni());                    
+            cs.setString(6, cliente.getCiudad());
+            cs.setString(7, cliente.getDireccion());
+            cs.setString(8, cliente.getTelefono());
+            cs.setString(9, cliente.getEmail());     
             cs.executeUpdate();
         } catch(ClassNotFoundException | SQLException ex) {
             mensaje = ex.getMessage();
@@ -131,6 +130,7 @@ public class ClienteDAL {
             }            
         }
         return mensaje;
+       
     }
     
     public static String eliminarCliente(String codigo) {

@@ -6,7 +6,7 @@ public class ClienteCiudad implements Comparator<Cliente> {
 
     @Override
     public int compare(Cliente cliente1, Cliente cliente2) {
-        return cliente1.getCiudad().compareToIgnoreCase(cliente2.getCiudad());
+        return cliente1.getCiudad().compareTo(cliente2.getCiudad());
     }
     
     

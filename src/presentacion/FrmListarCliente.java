@@ -5,6 +5,7 @@
  */
 package presentacion;
 
+import datos.ClienteDAL;
 import entidades.*;
 import entidades.ClienteNombre;
 import java.util.ArrayList;
@@ -26,7 +27,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
      */
     public FrmListarCliente() {
         initComponents();
-        this.listar();
+       listar();
     }
 
     /**
@@ -192,23 +193,23 @@ public class FrmListarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNombreActionPerformed
-        Collections.sort(cliente,new ClienteNombre());
-        this.listar();
+        Collections.sort(ClienteBL.listarCliente(),new ClienteNombre());
+        
     }//GEN-LAST:event_rbtNombreActionPerformed
 
     private void rbtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCodigoActionPerformed
-        Collections.sort(cliente);
-        this.listar();
+        Collections.sort(ClienteDAL.listarCliente());
+       
     }//GEN-LAST:event_rbtCodigoActionPerformed
 
     private void rctPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rctPaternoActionPerformed
-        Collections.sort(cliente,new ClientePaterno());
-        this.listar();
+        Collections.sort(ClienteDAL.listarCliente(),new ClientePaterno());
+        
     }//GEN-LAST:event_rctPaternoActionPerformed
 
     private void rbtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCiudadActionPerformed
-        Collections.sort(cliente,new ClienteCiudad());
-        this.listar();
+        Collections.sort(ClienteDAL.listarCliente(),new ClienteCiudad());
+        
     }//GEN-LAST:event_rbtCiudadActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
