@@ -232,6 +232,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
              client= new Cliente(codigo,apaterno,amaterno,nombre,dni,ciudad,direccion,telefono,email);
              FrnModificarCliente f= new  FrnModificarCliente(this,client);
              f.setVisible(true);
+             this.listar();
              
            
        } else {
@@ -254,7 +255,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
                 mensaje = ClienteBL.eliminarCliente(codigo);
                 if(mensaje.compareTo("Registro eliminado")==0) {
                     JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
-     //               rbtCodigoActionPerformed(evt);
+                    rbtCodigoActionPerformed(evt);
                 }
                 else
                     JOptionPane.showMessageDialog(this, mensaje, "Error", 0);

@@ -20,6 +20,7 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
      */
     public FrmModificarMovimiento() {
         initComponents();
+       
     }
     public FrmModificarMovimiento(JFrame parent, Movimiento movimiento) {
         initComponents();
@@ -28,6 +29,7 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
         txtDescripcionM.setText(movimiento.getDescripcion());
         txtAccionM.setText(movimiento.getAccion());
         txtEstadoM.setText(movimiento.getEstado());
+        this.activar(true);
     }            
 
     /**
@@ -54,19 +56,13 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
 
         lblDireccionM.setText("Estado:");
 
-        txtEstadoM.setEnabled(false);
-
         lblCodigoM.setText("Código:");
 
         txtCodigoM.setEnabled(false);
 
         lblNombreM.setText("Descripcion:");
 
-        txtDescripcionM.setEnabled(false);
-
         lblCiudadM.setText("Accion:");
-
-        txtAccionM.setEnabled(false);
 
         btnActualizarM.setMnemonic('A');
         btnActualizarM.setText("Actualizar");
@@ -149,12 +145,12 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
         else
         JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
-        limpiarTextos();
-        activar(false);
+       // limpiarTextos();
+        activar(true);
     }//GEN-LAST:event_btnActualizarMActionPerformed
 
      private void activar(boolean estado) {
-        txtCodigoM.setEnabled(estado);
+        txtCodigoM.setEnabled(!estado);
         txtDescripcionM.setEnabled(estado);
         txtAccionM.setEnabled(estado);
         txtEstadoM.setEnabled(estado);    
@@ -207,6 +203,7 @@ public class FrmModificarMovimiento extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new FrmModificarMovimiento().setVisible(true);
+                
             }
         });
     }

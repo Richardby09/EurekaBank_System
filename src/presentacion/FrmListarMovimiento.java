@@ -135,8 +135,8 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
                     .addComponent(rbtnCodigo)
                     .addComponent(rbtnAccion))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(98, 98, 98)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btmodificar)
                     .addComponent(bteliminar)
@@ -177,6 +177,7 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
             movi = new Movimiento(codigo, descripcion, accion, estado);
             FrmModificarMovimiento aplicacion = new FrmModificarMovimiento(this, movi);
             aplicacion.setVisible(true);
+            this.listar();
         } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el registro a modificar", "Aviso", 2);             
         }
@@ -248,9 +249,9 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
             }
         });
     }
+          
     
     private void listar(){
-        modelo = new DefaultTableModel();
         modelo.setColumnIdentifiers(columna);
         iterador=movimiento.iterator();
         if(iterador.hasNext()){
@@ -278,13 +279,13 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbtnAccion;
     private javax.swing.JRadioButton rbtnCodigo;
     // End of variables declaration//GEN-END:variables
-     private ArrayList<Movimiento> movimiento=MovimientoBL.listarMovimiento();
+     private ArrayList<Movimiento> movimiento=MovimientoBL.listarMovimiento(); 
       private Movimiento movi = null;
     String columna[]={" Tipo Codigo","Tipo Descripcion","Tipo Accion","Tipo Estado"};
-    Object fila[]= new Object[movimiento.size()];
+    Object fila[]= new Object[columna.length];
     String codigo,descripcion,mensaje,accion,estado;
     private Iterator<Movimiento> iterador;
-    DefaultTableModel modelo ;
+    DefaultTableModel modelo = new DefaultTableModel();
 
 
 }

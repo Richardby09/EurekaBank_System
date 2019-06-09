@@ -54,7 +54,7 @@ public class Movimiento implements Comparable<Movimiento> {
 
     @Override
     public int compareTo(Movimiento movimiento) {
-     return movimiento.getCodigo().compareTo(this.getCodigo());
+     return this.getCodigo().compareTo(movimiento.getCodigo());
     }
     @Override
     public int hashCode() {
@@ -80,6 +80,7 @@ public class Movimiento implements Comparable<Movimiento> {
         }
         return true;
     }
+    @Override
       public String toString() {
           return " Codigo "+this.getCodigo()+" Descripcion "+this.getDescripcion()
                   +" Accion "+this.getAccion()+" Estado "+this.getEstado();

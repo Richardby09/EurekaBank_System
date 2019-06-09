@@ -92,9 +92,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtEstadoM">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCodigoM">
       <Properties>
@@ -112,9 +109,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtDescripcionM">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCiudadM">
       <Properties>
@@ -122,9 +116,6 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtAccionM">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnActualizarM">
       <Properties>

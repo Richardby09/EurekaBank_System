@@ -220,7 +220,6 @@ public class FrnModificarCliente extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         codigo = txtCodigoC.getText();
-     
         nombre = txtNombreC.getText();
         ciudad = txtCiudadC.getText();
         direccion = txtDireccionC.getText();
@@ -230,12 +229,15 @@ public class FrnModificarCliente extends javax.swing.JFrame {
         amaterno = txtAMaternoC.getText();
         email = txtEmailC.getText();
         mensaje = ClienteBL.actualizarCliente(codigo, apaterno, amaterno, nombre, dni, ciudad, direccion, telefono, email);
-        if(mensaje.compareTo("Registro actualizado")==0)
+        if(mensaje.compareTo("Registro actualizado")==0){
         JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
+     
+        }
         else
         JOptionPane.showMessageDialog(this, mensaje, "Error", 0);
         limpiarTextos();
         activar(true);
+        
     }//GEN-LAST:event_btnActualizarActionPerformed
 
     private void activar(boolean estado) {

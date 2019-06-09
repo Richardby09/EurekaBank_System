@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Semana0807/src/datos/ClienteDAL.java</file>
-            <file>file:/D:/Semana0807/src/logica/ClienteBL.java</file>
-            <file>file:/D:/Semana0807/src/presentacion/FrnModificarCliente.java</file>
-            <file>file:/D:/Semana0807/src/presentacion/FrmAddCliente.java</file>
-            <file>file:/D:/Semana0807/src/presentacion/FrmListarCliente.java</file>
-            <file>file:/D:/Semana0807/src/entidades/Cliente.java</file>
+            <file>file:/D:/Semana0807/src/presentacion/FrmListarMovimiento.java</file>
         </group>
     </open-files>
 </project-private>
