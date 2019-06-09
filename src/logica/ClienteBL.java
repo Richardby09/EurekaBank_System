@@ -11,8 +11,8 @@ import java.util.*;
 
 public class ClienteBL {
 
-    public static String insertarCliente(String codigo, String nombre, String ciudad, String direccion,
-            String telefono, String dni, String Apaterno, String Amaterno, String email) {
+    public static String insertarCliente(String codigo, String Apaterno, String Amaterno, String nombre, String dni
+            , String ciudad, String direccion, String telefono, String email) {
         String mensaje;
         if (codigo.trim().length() == 5 && nombre.trim().length() > 1 && nombre.trim().length() <= 30
                 && ciudad.trim().length() > 1 && ciudad.trim().length() <= 30 && direccion.trim().length() > 1
@@ -22,7 +22,7 @@ public class ClienteBL {
                 &&email.trim().length()<=50 ){
             
             if (buscarCliente(codigo) == null) {
-                Cliente cliente = new Cliente(codigo, nombre, ciudad, direccion,telefono,dni,Apaterno,Amaterno,email);
+                Cliente cliente = new Cliente(codigo,Apaterno,Amaterno, nombre,dni, ciudad, direccion,telefono,email);
                 mensaje = ClienteDAL.insertarCliente(cliente);
             } else {
                 mensaje = "Código de sucursal y existe";
@@ -45,8 +45,8 @@ public class ClienteBL {
         return ClienteDAL.listarCliente();
     }
     
-     public static String actualizarCliente(String codigo, String nombre, String ciudad, String direccion,
-            String telefono, String dni, String Apaterno, String Amaterno, String email) {
+     public static String actualizarCliente(String codigo, String Apaterno, String Amaterno, String nombre, String dni
+            , String ciudad, String direccion, String telefono, String email) {
         String mensaje;
         if(codigo.trim().length() == 5 && nombre.trim().length() > 1 && nombre.trim().length() <= 30
                 && ciudad.trim().length() > 1 && ciudad.trim().length() <= 30 && direccion.trim().length() > 1
@@ -54,7 +54,7 @@ public class ClienteBL {
                 && dni.trim().length()==8&&Apaterno.trim().length()>1 &&Apaterno.trim().length()<=25 &&
                 Amaterno.trim().length()>1 &&Amaterno.trim().length()<=25&& email.trim().length()>1 
                 &&email.trim().length()<=50 ) {
-            Cliente cliente = new Cliente(codigo, nombre, ciudad, direccion,telefono,dni,Apaterno,Amaterno,email);
+            Cliente cliente = new Cliente(codigo,Apaterno,Amaterno, nombre,dni, ciudad, direccion,telefono,email);
             mensaje = ClienteDAL.actualizarCliente(cliente);
             if(mensaje == null) {
                 mensaje = "Registro actualizado";

@@ -147,10 +147,7 @@ public class FrmListarMovimiento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-      private void formWindowActivated(java.awt.event.WindowEvent evt) {                                     
-        movimiento = MovimientoBL.listarMovimiento();        
-    }   
-    
+ 
     
     private void rbtnCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtnCodigoActionPerformed
         

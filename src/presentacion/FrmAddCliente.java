@@ -249,7 +249,7 @@ public class FrmAddCliente extends javax.swing.JFrame {
        amaterno = txtAMaternoC.getText();
        email = txtEmailC.getText();
 
-        mensaje = ClienteBL.insertarCliente(codigo, nombre, ciudad, direccion, telefono, dni, apaterno, amaterno, email);
+        mensaje = ClienteBL.insertarCliente(codigo, apaterno, amaterno, nombre, dni, ciudad, direccion, telefono, email);
         if(mensaje.compareTo("Registro insertado")==0)
         JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
         else

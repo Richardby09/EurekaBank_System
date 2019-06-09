@@ -219,18 +219,19 @@ public class FrmListarCliente extends javax.swing.JFrame {
        ii= tabla1.getSelectedRow();
        if(ii>-1){
            modelo=(DefaultTableModel)tabla1.getModel();
-           codigo=(String)modelo.getValueAt(ii, 0);           
-            nombre = (String)modelo.getValueAt(ii,1);
-            ciudad = (String)modelo.getValueAt(ii,2);
-            direccion = (String)modelo.getValueAt(ii,3);
-            telefono=(String)modelo.getValueAt(ii, 4);           
-            dni = (String)modelo.getValueAt(ii,5);
-            apaterno = (String)modelo.getValueAt(ii,6);
-            amaterno = (String)modelo.getValueAt(ii,7);
+           codigo=(String)modelo.getValueAt(ii, 0);
+            apaterno = (String)modelo.getValueAt(ii,1);
+            amaterno = (String)modelo.getValueAt(ii,2);           
+            nombre = (String)modelo.getValueAt(ii,3);
+            dni = (String)modelo.getValueAt(ii,4);
+            ciudad = (String)modelo.getValueAt(ii,5);
+            direccion = (String)modelo.getValueAt(ii,6);
+            telefono=(String)modelo.getValueAt(ii, 7);           
             email = (String)modelo.getValueAt(ii,8);
-             client= new Cliente(codigo,nombre,ciudad,direccion,telefono,dni,apaterno,amaterno,email);
+             client= new Cliente(codigo,apaterno,amaterno,nombre,dni,ciudad,direccion,telefono,email);
              FrnModificarCliente f= new  FrnModificarCliente(this,client);
              f.setVisible(true);
+             
            
        } else {
             JOptionPane.showMessageDialog(this, "Debe seleccionar el registro a modificar", "Aviso", 2);             
@@ -274,14 +275,14 @@ public class FrmListarCliente extends javax.swing.JFrame {
         int i=0;
         while(iterador.hasNext()){
             client = iterador.next();            
-            data[0]=client.getCodigo();          
-            data[1]=client.getNombre();
-            data[2]=client.getCiudad();          
-            data[3]=client.getDireccion();    
-            data[4]=client.getTelefono();
-            data[5]=client.getDni();
-            data[6]=client.getApaterno();          
-            data[7]=client.getAmaterno();    
+            data[0]=client.getCodigo();
+            data[1]=client.getApaterno();
+            data[2]=client.getAmaterno();          
+            data[3]=client.getNombre();
+            data[4]=client.getDni();
+            data[5]=client.getCiudad();          
+            data[6]=client.getDireccion();    
+            data[7]=client.getTelefono();                      
             data[8]=client.getEmail();
             modelo.addRow(data);
             i++;
@@ -341,11 +342,11 @@ public class FrmListarCliente extends javax.swing.JFrame {
     private javax.swing.JRadioButton rctPaterno;
     private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables
-   private ArrayList<Cliente> cliente;
+   private ArrayList<Cliente> cliente=ClienteBL.listarCliente();
     private DefaultTableModel modelo;
-    private String columnas[] = {"Código", "Nombre", "Ciudad", "Dirección", "Telefono"
-            ,"Dni","Apellido Paterno","Apellido Materno","Email"};
-    private Object fila[] = new Object[columnas.length];
+    private String columnas[] = {"Código","Apellido Paterno","Apellido Materno" 
+            ,"Nombre","Dni", "Ciudad", "Dirección", "Telefono" ,"Email"};
+    private Object fila[] = new Object[cliente.size()];
     private Cliente client = null;
     private Iterator<Cliente> iterador;
    

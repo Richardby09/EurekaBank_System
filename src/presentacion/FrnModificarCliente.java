@@ -34,6 +34,7 @@ public class FrnModificarCliente extends javax.swing.JFrame {
         txtAPaternoC.setText(cliente.getApaterno());
         txtAMaternoC.setText(cliente.getAmaterno());
         txtEmailC.setText(cliente.getEmail());
+        this.activar(true);
     }            
 
 
@@ -219,6 +220,7 @@ public class FrnModificarCliente extends javax.swing.JFrame {
 
     private void btnActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizarActionPerformed
         codigo = txtCodigoC.getText();
+     
         nombre = txtNombreC.getText();
         ciudad = txtCiudadC.getText();
         direccion = txtDireccionC.getText();
@@ -227,7 +229,7 @@ public class FrnModificarCliente extends javax.swing.JFrame {
         apaterno = txtAPaternoC.getText();
         amaterno = txtAMaternoC.getText();
         email = txtEmailC.getText();
-        mensaje = ClienteBL.actualizarCliente(codigo, nombre, ciudad, direccion, telefono, dni, apaterno, amaterno, email);
+        mensaje = ClienteBL.actualizarCliente(codigo, apaterno, amaterno, nombre, dni, ciudad, direccion, telefono, email);
         if(mensaje.compareTo("Registro actualizado")==0)
         JOptionPane.showMessageDialog(this, mensaje, "Resultado", 1);
         else

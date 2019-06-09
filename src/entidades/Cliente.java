@@ -31,8 +31,8 @@ public class Cliente implements Comparable<Cliente> {
         this.Amaterno="NM";
     }
 
-    public Cliente(String codigo, String nombre, String ciudad, String direccion,
-            String telefono, String dni, String Apaterno, String Amaterno, String email) {
+    public Cliente(String codigo, String Apaterno, String Amaterno, 
+            String nombre,String dni, String ciudad, String direccion, String telefono, String email) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.ciudad = ciudad;
@@ -44,7 +44,8 @@ public class Cliente implements Comparable<Cliente> {
         this.email = email;
     }
 
-    public Cliente(String codigo, String nombre, String ciudad, String direccion, String telefono, String dni, String Apaterno, String Amaterno) {
+    public Cliente(String codigo, String Apaterno, String Amaterno, 
+            String nombre,String dni, String ciudad, String direccion, String telefono) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.ciudad = ciudad;

@@ -21,13 +21,13 @@ public class ClienteDAL {
             String sql = "{call sp_insertarCliente(?,?,?,?,?,?,?,?,?)}";
             ps = cn.prepareStatement(sql);
             ps.setString(1, cliente.getCodigo());
-            ps.setString(2, cliente.getNombre());
-            ps.setString(3, cliente.getCiudad());
-            ps.setString(4, cliente.getDireccion());
-            ps.setString(5, cliente.getTelefono());
-            ps.setString(6, cliente.getDni());
-            ps.setString(7, cliente.getApaterno());
-            ps.setString(8, cliente.getAmaterno());
+            ps.setString(4, cliente.getNombre());
+            ps.setString(6, cliente.getCiudad());
+            ps.setString(7, cliente.getDireccion());
+            ps.setString(8, cliente.getTelefono());
+            ps.setString(5, cliente.getDni());
+            ps.setString(2, cliente.getApaterno());
+            ps.setString(3, cliente.getAmaterno());
             ps.setString(9, cliente.getEmail());                               
             ps.executeUpdate();
             mensaje="true";
@@ -48,7 +48,7 @@ public class ClienteDAL {
     public static String buscarCliente(String codigo) {
         try {
             cn = Conexion.establishConnection();
-            String sql = "select * from Cliente where cliecodigo = ?";
+            String sql = "select * from cliente where cliecodigo = ?";
             ps = cn.prepareStatement(sql);
             ps.setString(1,codigo);
             rs = ps.executeQuery();
@@ -57,7 +57,7 @@ public class ClienteDAL {
             }                        
 
         } catch (ClassNotFoundException | SQLException ex) {
-            showMessageDialog(null, ex.getMessage(), "Erro:r", 0);
+            showMessageDialog(null, ex.getMessage(), "Error", 0);
         } finally {
             try {
                 ps.close();
@@ -78,7 +78,7 @@ public class ClienteDAL {
         try {
             cn = Conexion.establishConnection();
             st = cn.createStatement();
-            String sql = "select * from Cliente";
+            String sql = "select * from cliente";
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 cliente.add(
@@ -108,16 +108,17 @@ public class ClienteDAL {
         String sql, mensaje = null;
         try {
             cn = Conexion.establishConnection();
-            sql = "{call sp_actualizarCliente(?,?,?,?,?,?,?)}";
+            sql = "{call sp_actualizarCliente(?,?,?,?,?,?,?,?,?)}";
             cs = cn.prepareCall(sql);
-            cs.setString(1, cliente.getCodigo());
-            cs.setString(2, cliente.getNombre());
-            cs.setString(3, cliente.getCiudad());
-            cs.setString(4, cliente.getDireccion());
-            cs.setString(5, cliente.getCodigo());
-            cs.setString(6, cliente.getNombre());
-            cs.setString(7, cliente.getCiudad());
-            cs.setString(8, cliente.getDireccion());
+            ps.setString(1, cliente.getCodigo());
+            ps.setString(2, cliente.getApaterno());
+            ps.setString(3, cliente.getAmaterno());
+            ps.setString(4, cliente.getNombre());
+            ps.setString(5, cliente.getDni());                    
+            ps.setString(6, cliente.getCiudad());
+            ps.setString(7, cliente.getDireccion());
+            ps.setString(8, cliente.getTelefono());
+            ps.setString(9, cliente.getEmail());     
             cs.executeUpdate();
         } catch(ClassNotFoundException | SQLException ex) {
             mensaje = ex.getMessage();
@@ -141,13 +142,15 @@ public class ClienteDAL {
             cs.setString(1, codigo);
             cs.executeUpdate();
         } catch(ClassNotFoundException | SQLException ex) {
-            mensaje = ex.getMessage();
+            //mensaje = ex.getMessage();
+             mensaje="LA 1";
         } finally {
             try {
                 cs.close();
                 cn.close();
             } catch(SQLException ex) {
-                mensaje = ex.getMessage();
+               // mensaje = ex.getMessage();
+               mensaje="LA 2";
             }            
         }
         return mensaje;
