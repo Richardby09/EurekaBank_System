@@ -27,7 +27,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
      */
     public FrmListarCliente() {
         initComponents();
-       listar();
+       //listar();
     }
 
     /**
@@ -51,7 +51,14 @@ public class FrmListarCliente extends javax.swing.JFrame {
         tabla1 = new javax.swing.JTable();
         jButton4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         buttonGroup1.add(rbtNombre);
         rbtNombre.setText("Nombre");
@@ -193,23 +200,24 @@ public class FrmListarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void rbtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtNombreActionPerformed
-        Collections.sort(ClienteBL.listarCliente(),new ClienteNombre());
-        
+        Collections.sort(cliente,new ClienteNombre());
+        this.listar();
     }//GEN-LAST:event_rbtNombreActionPerformed
 
     private void rbtCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCodigoActionPerformed
-        Collections.sort(ClienteDAL.listarCliente());
+        Collections.sort(cliente);
+        this.listar();
        
     }//GEN-LAST:event_rbtCodigoActionPerformed
 
     private void rctPaternoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rctPaternoActionPerformed
-        Collections.sort(ClienteDAL.listarCliente(),new ClientePaterno());
-        
+        Collections.sort(cliente,new ClientePaterno());
+        this.listar();
     }//GEN-LAST:event_rctPaternoActionPerformed
 
     private void rbtCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbtCiudadActionPerformed
-        Collections.sort(ClienteDAL.listarCliente(),new ClienteCiudad());
-        
+        Collections.sort(cliente,new ClienteCiudad());
+        this.listar();
     }//GEN-LAST:event_rbtCiudadActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -218,7 +226,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
 
     private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
        ii= tabla1.getSelectedRow();
-       if(ii>-1){
+       if(ii!=-1){
            modelo=(DefaultTableModel)tabla1.getModel();
            codigo=(String)modelo.getValueAt(ii, 0);
             apaterno = (String)modelo.getValueAt(ii,1);
@@ -246,7 +254,7 @@ public class FrmListarCliente extends javax.swing.JFrame {
         
         int respuesta;
         int i = tabla1.getSelectedRow();
-        if (i>-1) {
+        if (i!=-1) {
             respuesta = JOptionPane.showConfirmDialog(this, "¿Está seguro que desea eliminar el registro?", 
                     "Aviso", JOptionPane.YES_NO_OPTION, 3);
             if(respuesta == JOptionPane.OK_OPTION) {
@@ -266,27 +274,32 @@ public class FrmListarCliente extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        cliente = ClienteBL.listarCliente();
+    }//GEN-LAST:event_formWindowActivated
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+       
+    }//GEN-LAST:event_formWindowClosed
    
     private  void listar(){   
-        modelo=new DefaultTableModel();   
-        ArrayList<Cliente> cliente = ClienteBL.listarCliente();
-        Object  data[] = new Object[cliente.size()];        
+        modelo=new DefaultTableModel();               
         modelo.setColumnIdentifiers(columnas);       
-       // modelo.addColumn(column);
-        Iterator<Cliente> iterador=cliente.iterator();
-        int i=0;
+        iterador=cliente.iterator();
+        
         while(iterador.hasNext()){
             client = iterador.next();            
-            data[0]=client.getCodigo();
-            data[1]=client.getApaterno();
-            data[2]=client.getAmaterno();          
-            data[3]=client.getNombre();
-            data[4]=client.getDni();
-            data[5]=client.getCiudad();          
-            data[6]=client.getDireccion();    
-            data[7]=client.getTelefono();                      
-            data[8]=client.getEmail();
-            modelo.addRow(data);
+            fila[0]=client.getCodigo();
+            fila[1]=client.getApaterno();
+            fila[2]=client.getAmaterno();          
+            fila[3]=client.getNombre();
+            fila[4]=client.getDni();
+            fila[5]=client.getCiudad();          
+            fila[6]=client.getDireccion();    
+            fila[7]=client.getTelefono();                      
+            fila[8]=client.getEmail();
+            modelo.addRow(fila);
             i++;
          }
         tabla1.setModel(modelo);
@@ -344,14 +357,13 @@ public class FrmListarCliente extends javax.swing.JFrame {
     private javax.swing.JRadioButton rctPaterno;
     private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables
-   private ArrayList<Cliente> cliente=ClienteBL.listarCliente();
+   private ArrayList<Cliente> cliente;
     private DefaultTableModel modelo;
-    private String columnas[] = {"Código","Apellido Paterno","Apellido Materno" 
-            ,"Nombre","Dni", "Ciudad", "Dirección", "Telefono" ,"Email"};
-    private Object fila[] = new Object[cliente.size()];
+    private String columnas[] = {"Código","Apellido Paterno","Apellido Materno","Nombre","Dni", "Ciudad", "Dirección", "Telefono" ,"Email"};
+    private Object fila[] = new Object[columnas.length];
+    int i=0;    
     private Cliente client = null;
-    private Iterator<Cliente> iterador;
-   
+    private Iterator<Cliente> iterador;   
     String codigo,nombre,ciudad,direccion,telefono,dni,apaterno,amaterno,email,mensaje;
     int ii;
 }

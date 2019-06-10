@@ -68,7 +68,11 @@ public class FrnModificarCliente extends javax.swing.JFrame {
         lblDireccion2 = new javax.swing.JLabel();
         txtEmailC = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         lblCodigo1.setText("Telefono:");
 
@@ -276,6 +280,10 @@ public class FrnModificarCliente extends javax.swing.JFrame {
     private void txtDniCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDniCActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDniCActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
